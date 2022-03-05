@@ -79,20 +79,33 @@ def auction_outcome(g: Group):
 # PAGES
 class MyPage(Page):
 
+    @property
     def vars_for_template(player: Player):
         g = player.group
         if g.treatment == 'A':
-            left_pic = 'BTB.jpeg'
-            right_pic = 'TB.jpg'
+            left_pic = 'TB.jpg'
+            right_pic = 'BTB.jpeg'
+            left_description =
+            right_description =
+
         elif g.treatment == 'B':
             left_pic = 'CF.jpg'
             right_pic = 'WE.jpeg'
+            left_description =
+            right_description =
+
         elif g.treatment == 'C':
             left_pic = 'FC.jpeg'
             right_pic = 'NC.jpeg'
+            left_description =
+            right_description =
+
         return dict(
             left_image_file=left_pic,
             right_image_file=right_pic,
+            left_description_file=left_description,
+            right_description_file=right_description
+
         )
 
 

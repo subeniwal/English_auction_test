@@ -5,11 +5,15 @@
 {{ block content }}
 <p>
 
-        Your bid was {{ player.bid }}
+        Your bid was {{ player.L_bid }}
+        Your bid was {{ player.R_bid }}
+
         <br><br>
-        The highest bid was {{ group.highest_bid }}
+        The highest bid was {{ group.L_highest_bid }}
+        The highest bid was {{ group.R_highest_bid }}
         <br><br>
-        You {% if player.id_in_group == group.highest_bidder %} won {% else %} did not win {% endif %} the auction.
+        You {% if player.id_in_group == group.L_highest_bidder %} won {% else %} did not win {% endif %} the auction.
+        You {% if player.id_in_group == group.R_highest_bidder %} won {% else %} did not win {% endif %} the auction.
     </p>
     {{ next_button }}
 {{ endblock }}
