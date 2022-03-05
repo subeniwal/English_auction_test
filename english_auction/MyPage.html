@@ -1,12 +1,37 @@
 {{ block title }}
     Page title
 {{ endblock }}
+
+{{block style}}
+    <style>
+        img {
+          width: 400px;
+          height: auto;
+        }
+    </style>
+{{endblock}}
+
 {{ block content }}
 
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col">
+      <img src="{{ static left_image_file }}"/>
+    </div>
+    <div class="col">
+      <img src="{{ static right_image_file }}"/>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col">
+      This is a description of the left picture.
+    </div>
+    <div class="col">
+      This is a description of the right picture.
+    </div>
+  </div>
+</div>
 
-
-<img src="{{ static left_image_file }}"/>
-<img src="{{ static right_image_file }}"/>
 
 <table id="history" class="table">
 <tr>
