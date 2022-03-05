@@ -72,6 +72,24 @@ def auction_outcome(g: Group):
 
 # PAGES
 class MyPage(Page):
+
+    def vars_for_template(player: Player):
+        g = player.group
+        if g.treatment == 'A':
+            left_pic = 'BTB.jpeg'
+            right_pic = 'TB.jpg'
+        elif g.treatment == 'B':
+            left_pic = 'CF.jpg'
+            right_pic = 'WE.jpeg'
+        elif g.treatment == 'C':
+            left_pic = 'FC.jpeg'
+            right_pic = 'NC.jpeg'
+        return dict(
+            left_image_file=left_pic,
+            right_image_file=right_pic,
+        )
+
+
     def live_method(player, bid):
         player.bid = bid
         group = player.group

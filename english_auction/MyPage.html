@@ -2,7 +2,11 @@
     Page title
 {{ endblock }}
 {{ block content }}
-<img src="{% static './TB.jpg' %}"/>
+
+
+
+<img src="{{ static left_image_file }}"/>
+<img src="{{ static right_image_file }}"/>
 
 <table id="history" class="table">
 <tr>
