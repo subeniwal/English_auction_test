@@ -11,7 +11,7 @@ class Constants(BaseConstants):
     name_in_url = 'english_auction'
     players_per_group = 3
     num_rounds = 3
-    timeout_seconds = 300
+    timeout_seconds = 120
 
 
 class Subsession(BaseSubsession):
