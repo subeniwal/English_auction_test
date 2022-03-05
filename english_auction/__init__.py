@@ -11,7 +11,7 @@ class Constants(BaseConstants):
     name_in_url = 'english_auction'
     players_per_group = 3
     num_rounds = 3
-    timeout_seconds = 30
+    timeout_seconds = 10
 
 
 class Subsession(BaseSubsession):
@@ -47,15 +47,12 @@ def creating_session(subsession):
             p.participant.vars['totalEarnings'] = 0
             p.participant.vars['finished'] = False
 
-    if subsession.round_number==1 :
-        for g in subsession.get_groups():
-
-            order = ["A","B","C"]
-            random.shuffle(order)
-            for i in range(1,Constants.num_rounds):
-                g.in_round(i).treatment = order[i]
-
-
+    for g in subsession.get_groups():
+        order = ["A", "B", "C"]
+        for r in range(1, subsession.round_number):
+            prior_group = g.in_round(r)
+            order.remove(prior_group.treatment)
+        g.treatment = random.sample(order, 1)[0]
 
 
 def auction_outcome(g: Group):
