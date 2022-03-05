@@ -30,37 +30,94 @@
       This is a description of the right picture.
     </div>
   </div>
+  <div class="row justify-content-center">
+    <div class="col">
+      Left auction highest bid: <span id="L_price">?</span>
+    </div>
+    <div class="col">
+      Right auction highest bid: <span id="R_price">?</span>
+    </div>
+  </div>
+    <div class="row justify-content-center">
+    <div class="col">
+      <span id="L_highest_bidder">?</span>
+    </div>
+    <div class="col">
+      <span id="R_highest_bidder">?</span>
+    </div>
+  </div>
+    </div>
+    <div class="row justify-content-center">
+    <div class="col">
+      <input id="leftinputbox" type="number">
+      <button type="button" onclick="sendValue('L')">Bid in left auction</button>
+    </div>
+    <div class="col">
+      <input id="rightinputbox" type="number">
+      <button type="button" onclick="sendValue('R')">Bid in right auction</button>
+    </div>
+  </div>
 </div>
 
 
-<table id="history" class="table">
-<tr>
-  <th>Player</th>
-  <th>Bid</th>
-</tr>
-</table>
-<input id="leftinputbox" type="number">
-<button type="button" onclick="sendValue()">Send</button>
-<input id="rightinputbox" type="number">
-<button type="button" onclick="sendValue()">Send</button>
+<!--<table id="history" class="table">-->
+<!--<tr>-->
+<!--  <th>Player</th>-->
+<!--  <th>Bid</th>-->
+<!--</tr>-->
+<!--</table>-->
+
+
 {{ endblock }}
 
 {{block script}}
 <script>
-
+  let my_id = {{player.id_in_group}}
+  console.log('my id in group = ' + my_id);
   let history = document.getElementById('history');
   let inputboxA = document.getElementById('leftinputbox');
   let inputboxB = document.getElementById('rightinputbox');
 
 
-
   function liveRecv(data) {
-      history.innerHTML += '<tr><td>' + data.id_in_group + '</td><td>' + data.bid + '</td></tr>';
+      console.log(data);
+      let auction = data.auction;
+      let price = data.highest_bid;
+      let highest_bidder = data.highest_bidder
+      let price_span;
+      let highest_bidder_span;
+      // history.innerHTML += '<tr><td>' + data.id_in_group + '</td><td>' + data.bid + '</td></tr>';
+      if (auction == 'L'){
+        price_span = document.getElementById('L_price');
+        highest_bidder_span = document.getElementById('L_highest_bidder');
+      }
+      else if (auction == 'R'){
+        price_span = document.getElementById('R_price');
+        highest_bidder_span = document.getElementById('R_highest_bidder');
+      }
+      price_span.innerHTML = price;
+      if (my_id == highest_bidder){
+        highest_bidder_span.innerHTML = "You <b>ARE</b> currently the highest bidder in auction " + auction;
+      }
+      else {
+        highest_bidder_span.innerHTML = "You <b>ARE NOT</b> currently not the highest bidder in auction " + auction;
+      }
   }
 
-  function sendValue() {
-    liveSend(parseInt(inputboxA.value));
-    liveSend(parseInt(inputboxB.value));
+  function sendValue(side) {
+    let bid;
+    if (side=='L'){
+      bid = parseInt(inputboxA.value);
+    }
+    else if (side=='R'){
+      bid = parseInt(inputboxB.value);
+    }
+
+    liveSend({
+      'auction': side,
+      'bid': bid,
+  });
+
   }
 
 </script>
