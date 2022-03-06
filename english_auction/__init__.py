@@ -85,20 +85,20 @@ class MyPage(Page):
         if g.treatment == 'A':
             left_pic = 'TB.jpg'
             right_pic = 'BTB.jpeg'
-            left_description =
-            right_description =
+            left_description = ''
+            right_description = ''
 
         elif g.treatment == 'B':
             left_pic = 'CF.jpg'
             right_pic = 'WE.jpeg'
-            left_description =
-            right_description =
+            left_description =''
+            right_description =''
 
         elif g.treatment == 'C':
             left_pic = 'FC.jpeg'
             right_pic = 'NC.jpeg'
-            left_description =
-            right_description =
+            left_description =''
+            right_description =''
 
         return dict(
             left_image_file=left_pic,
