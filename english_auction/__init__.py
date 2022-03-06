@@ -86,24 +86,32 @@ class MyPage(Page):
         if g.treatment == 'A':
             left_pic = 'TB.jpg'
             right_pic = 'BTB.jpeg'
-            left_description = 'This is the description of the TB image.'
-            right_description = 'Here is where we say something about BTB.'
+            left_description = 'Compostable bags are the ethical choice for a cleaner environment and an ECO-FRIENDLY future.'
+            left_description += '<ul>'
+            left_description += "<li> Thank you taking care of our planet for FUTURE GENERATIONS by replacing plastic with our sustainably manufactured, compostable bags. !</li>"
+            left_description += '</ul>'
+            right_description = 'Strong and sturdy plastic to take care of all your mess.'
 
         elif g.treatment == 'B':
             left_pic = 'CF.jpg'
             right_pic = 'WE.jpeg'
-            left_description ='CF has the following properties:'
+            left_description ='Free as a bird. Literally!:'
             left_description += '<ul>'
-            left_description +=     "<li>It's good stuff!</li>"
-            left_description +=     '<li>Low price...</li>'
+            left_description +=     "<li> Organic !</li>"
+            left_description +=     "<li>Cage-free Hens</li>"
+            left_description += "<li>Pasture raised</li>"
             left_description += '</ul>'
-            right_description ='This description for WE has no list'
+            right_description ='Cheapest and equally nutritious eggs on the market'
 
         elif g.treatment == 'C':
             left_pic = 'FC.jpeg'
             right_pic = 'NC.jpeg'
-            left_description ='The FC product description goes here.'
-            right_description ='NC is the best stuff and you should really buy it!'
+            left_description ='Our coffee will not leave a bitter taste in your mouth. It is all fairtrade.'
+            left_description += '<ul>'
+            left_description += "<li>Farmers are paid fairly </li>"
+            left_description += "<li>No need to cut forests to plant more coffee crops.</li>"
+            left_description += '</ul>'
+            right_description ='Awaken your senses with our rich aroma coffee without a burden on your pocket'
 
         return dict(
             left_image_file=left_pic,
