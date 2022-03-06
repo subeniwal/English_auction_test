@@ -40,10 +40,10 @@ class Player(BasePlayer):
 
 
 def creating_session(subsession):
-    if subsession.round_number == 1 or subsession.round_number == 6:
-        subsession.group_randomly()
-    else:
-        subsession.group_like_round(subsession.round_number - 1)
+    # if subsession.round_number == 1 or subsession.round_number == 6:
+    #     subsession.group_randomly()
+    # else:
+    #     subsession.group_like_round(subsession.round_number - 1)
 
     for p in subsession.get_players():
         p.value = random.random()*100
@@ -76,36 +76,40 @@ def auction_outcome(g: Group):
     # (Python uses 0-based arrays...)
     g.L_highest_bid = bids[0]
 
+
 # PAGES
 class MyPage(Page):
 
-    @property
+    # @property
     def vars_for_template(player: Player):
         g = player.group
         if g.treatment == 'A':
             left_pic = 'TB.jpg'
             right_pic = 'BTB.jpeg'
-            left_description = ''
-            right_description = ''
+            left_description = 'This is the description of the TB image.'
+            right_description = 'Here is where we say something about BTB.'
 
         elif g.treatment == 'B':
             left_pic = 'CF.jpg'
             right_pic = 'WE.jpeg'
-            left_description =''
-            right_description =''
+            left_description ='CF has the following properties:'
+            left_description += '<ul>'
+            left_description +=     "<li>It's good stuff!</li>"
+            left_description +=     '<li>Low price...</li>'
+            left_description += '</ul>'
+            right_description ='This description for WE has no list'
 
         elif g.treatment == 'C':
             left_pic = 'FC.jpeg'
             right_pic = 'NC.jpeg'
-            left_description =''
-            right_description =''
+            left_description ='The FC product description goes here.'
+            right_description ='NC is the best stuff and you should really buy it!'
 
         return dict(
             left_image_file=left_pic,
             right_image_file=right_pic,
-            left_description_file=left_description,
-            right_description_file=right_description
-
+            left_description=left_description,
+            right_description=right_description,
         )
 
 
